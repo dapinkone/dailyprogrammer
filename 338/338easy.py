@@ -4,10 +4,11 @@ import datetime as dt
 
 
 def dayofweek(date):
-    y, m, d = date.split(' ')
+    year, month, day = date.split(' ')
     # datetime requires a 4-digit year.
-    y = '0' * (4 - len(str(y))) + y
-    date = f'{y} {m} {d}'
+    year = year.zfill(4)
+    date = f'{year} {month} {day}'
+
     try:
         dateobj = dt.datetime.strptime(date, '%Y %m %d')
     except ValueError:
