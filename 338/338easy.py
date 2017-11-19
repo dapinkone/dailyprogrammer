@@ -28,4 +28,8 @@ def dayofweek(date):
     return dateobj.strftime('%A')
 
 
+for line in inputdata.splitlines():
+    print(f"{line} \t{dayofweek(line)}")
+
+# should return "Wednesday", returns "Friday" Why?
 assert(dayofweek('2202 12 15') == 'Wednesday')
