@@ -1,0 +1,24 @@
+#!/usr/bin/python
+import datetime
+
+inputdata = """
+00:00
+01:30
+12:05
+14:01
+20:29
+21:00"""
+
+
+def englishify(t):
+    """
+takes a str of form HH:mm, returns the english equivelent.
+for example: englishify('01:30') -> "It's one thirty am"
+englishify('14:32') -> "It's two thirty two pm"
+"""
+
+    def numToWords(num):
+        """return words, given a two digit number"""
+        return 'xx'
+
+    t = ' '.join(numToWords(num) for num in t.split(':'))
