@@ -2,7 +2,21 @@
 
 import datetime as dt
 
-inputdata = """2017 10 30
+
+def dayofweek(date):
+    y, m, d = date.split(' ')
+    # datetime requires a 4-digit year.
+    y = '0' * (4 - len(str(y))) + y
+    date = f'{y} {m} {d}'
+    try:
+        dateobj = dt.datetime.strptime(date, '%Y %m %d')
+    except ValueError:
+        return None
+    return dateobj.strftime('%A')
+
+
+def test_dayofweek():
+    inputdata = """2017 10 30
 2016 2 29
 2015 2 28
 29 4 12
@@ -15,21 +29,16 @@ inputdata = """2017 10 30
 2202 12 15
 7032 3 26"""
 
+    answers = "Monday Monday Saturday Thursday Friday Tuesday\
+     Thursday Monday Friday Saturday Wednesday Monday"
 
-def dayofweek(date):
-    y, m, d = date.split(' ')
-    # datetime requires a 4-digit year.
-    y = '0'*(4-len(str(y))) + y
-    date = f'{y} {m} {d}'
-    try:
-        dateobj = dt.datetime.strptime(date, '%Y %M %d')
-    except ValueError:
-        return None
-    return dateobj.strftime('%A')
+    lookup = dict(zip(inputdata.splitlines(), answers.split()))
+
+    for k, v in lookup.items():
+        try:
+            assert(dayofweek(k) == v)
+        except AssertionError:  # elaborate in case of a fail.
+            print(f"Failed Test: dayofweek({k}) == {v}: {dayofweek(k)}")
 
 
-for line in inputdata.splitlines():
-    print(f"{line} \t{dayofweek(line)}")
-
-# should return "Wednesday", returns "Friday" Why?
-assert(dayofweek('2202 12 15') == 'Wednesday')
+test_dayofweek()
