@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # given a string, return list of repeats and frequencies.
+import pprint
 
 
 def analyse(data):
@@ -16,8 +17,11 @@ def analyse(data):
     return {k: v for k, v in lookup.items() if v > 1}
 
 
-d = '11325992321982432123259'
-print(analyse(d))
+pp = pprint.PrettyPrinter()
 
-print(analyse('333'))
-print(analyse('33'))
+# d = '11325992321982432123259'
+d = '82156821568221'
+pp.pprint(analyse(d))
+
+# pp.pprint(analyse('333'))
+# pp.pprint(analyse('33'))
